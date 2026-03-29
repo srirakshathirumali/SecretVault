@@ -29,6 +29,7 @@ namespace SecretVault.Infrastructure
 
             //Register services
             services.AddScoped<IPasswordService, PasswordService>();
+            services.AddScoped<IJwtService, JwtService>();
 
             return services;
         }

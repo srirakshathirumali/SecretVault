@@ -7,6 +7,8 @@ namespace SecretVault.Application.Interfaces
 {
     public interface IAuthService
     {
-        public Task<RegisterResponseDto> RegisterAsync(RegisterRequestDto request);
+        Task<RegisterResponseDto> RegisterAsync(RegisterRequestDto request);
+        Task<LoginResponseDto> LoginAsync(LoginRequestDto request);
+
     }
 }
