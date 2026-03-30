@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SecretVault.Application.DTOs;
+using SecretVault.Application.DTOs.Auth;
 using SecretVault.Application.Interfaces;
 using System.Security.Claims;
 

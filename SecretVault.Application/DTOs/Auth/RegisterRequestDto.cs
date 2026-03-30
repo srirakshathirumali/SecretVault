@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SecretVault.Application.DTOs
+namespace SecretVault.Application.DTOs.Auth
 {
     public class RegisterRequestDto
     {

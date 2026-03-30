@@ -1,4 +1,4 @@
-﻿using SecretVault.Application.DTOs;
+﻿using SecretVault.Application.DTOs.Auth;
 using SecretVault.Application.Interfaces;
 using SecretVault.Domain.Entities;
 using SecretVault.Domain.Exceptions;

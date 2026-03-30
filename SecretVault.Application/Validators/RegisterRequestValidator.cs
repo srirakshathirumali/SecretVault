@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using SecretVault.Application.DTOs;
+using SecretVault.Application.DTOs.Auth;
 using System;
 using System.Collections.Generic;
 using System.Text;
