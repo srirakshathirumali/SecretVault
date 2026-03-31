@@ -16,10 +16,9 @@ namespace SecretVault.Application
         {
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<ITransactionService, TransactionService>();
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining<RegisterRequestValidator>();
-            services.AddValidatorsFromAssemblyContaining<LoginRequestValidator>();
-            services.AddValidatorsFromAssemblyContaining<CreateAccountRequestValidator>();
             return services;
         }
     }
