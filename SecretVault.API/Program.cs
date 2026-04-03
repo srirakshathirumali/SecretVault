@@ -1,3 +1,4 @@
+using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using SecretVault.API.Middleware;
@@ -25,6 +26,17 @@ try
     builder.Services.AddOpenApi();
 
     builder.Services.AddInfrastructure(builder.Configuration);
+
+    // Rate limiting
+    builder.Services.AddMemoryCache();
+    builder.Services.Configure<IpRateLimitOptions>(
+        builder.Configuration.GetSection("IpRateLimiting"));
+    builder.Services.Configure<IpRateLimitPolicies>(
+        builder.Configuration.GetSection("IpRateLimitPolicies"));
+    builder.Services.AddInMemoryRateLimiting();
+    builder.Services.AddSingleton<IRateLimitConfiguration,
+        RateLimitConfiguration>();
+
     builder.Services.AddApplication();
 
     //Add JWT authentication
@@ -56,9 +68,9 @@ try
     {
         app.MapOpenApi();
     }
-
+    app.UseIpRateLimiting();
     app.UseHttpsRedirection();
-
+    app.UseAuthentication();
     app.UseAuthorization();
     app.UseMiddleware<AuditMiddleware>();
     app.MapControllers();
