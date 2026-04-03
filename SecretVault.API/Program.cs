@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using SecretVault.API.Middleware;
 using SecretVault.Application;
 using SecretVault.Infrastructure;
 using System.Text;
@@ -45,7 +46,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
+app.UseMiddleware<AuditMiddleware>();
 app.MapControllers();
 
 app.Run();

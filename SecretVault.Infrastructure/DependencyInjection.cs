@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Minio;
 using SecretVault.Application.Interfaces;
 using SecretVault.Domain.Interfaces;
 using SecretVault.Infrastructure.Persistence;
@@ -30,6 +31,18 @@ namespace SecretVault.Infrastructure
             //Register services
             services.AddScoped<IPasswordService, PasswordService>();
             services.AddScoped<IJwtService, JwtService>();
+            services.AddScoped<IS3Service, S3Service>();
+
+            // Minio client
+            services.AddMinio(config => config
+                .WithEndpoint(
+                    configuration["S3:Endpoint"] ?? "localhost",
+                    int.Parse(configuration["S3:Port"] ?? "9000"))
+                .WithCredentials(
+                    configuration["S3:AccessKey"] ?? "minioadmin",
+                    configuration["S3:SecretKey"] ?? "minioadmin")
+                .WithSSL(false)
+                .Build());
 
             return services;
         }
