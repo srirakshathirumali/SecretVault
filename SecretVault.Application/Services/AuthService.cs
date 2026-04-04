@@ -23,41 +23,24 @@ namespace SecretVault.Application.Services
         }
         public async Task<RegisterResponseDto> RegisterAsync(RegisterRequestDto request)
         {
-            try
+            bool emailExists = await _userRepository.EmailExistsAsync(request.Email);
+            if (emailExists)
             {
-                bool emailExists =await _userRepository.EmailExistsAsync(request.Email);
-                if (emailExists)
-                {
-                    throw new EmailAlreadyExistsException(request.Email);
-                }
-                User user = new User
-                {
-                    FullName = request.FullName,
-                    Email = request.Email,
-                    PasswordHash = _passwordService.Hash(request.Password),
-                };
-                await _userRepository.AddAync(user);
-                return new RegisterResponseDto
-                {
-                    UserId = user.Id,
-                    Message = "User registered successfully"
-                };
-                
+                throw new EmailAlreadyExistsException(request.Email);
             }
-            catch (EmailAlreadyExistsException ex)
+            User user = new User
             {
-                return new RegisterResponseDto
-                {
-                    Message = ex.Message,
-                };
-            }
-            catch (Exception ex)
+                FullName = request.FullName,
+                Email = request.Email,
+                PasswordHash = _passwordService.Hash(request.Password),
+            };
+            await _userRepository.AddAync(user);
+            return new RegisterResponseDto
             {
-                return new RegisterResponseDto
-                {
-                    Message = $"An error occurred during registration: {ex.Message}",
-                };
-            }
+                UserId = user.Id,
+                Message = "User registered successfully"
+            };
+
         }
 
         public async Task<LoginResponseDto> LoginAsync(LoginRequestDto request)
