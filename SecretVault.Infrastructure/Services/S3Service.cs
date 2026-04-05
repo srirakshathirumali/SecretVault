@@ -3,8 +3,6 @@ using Minio;
 using Minio.DataModel.Args;
 using Minio.Exceptions;
 using SecretVault.Application.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace SecretVault.Infrastructure.Services
@@ -16,7 +14,7 @@ namespace SecretVault.Infrastructure.Services
         private readonly string bucketName;
         public S3Service(IConfiguration configuration, IMinioClient minioClient)
         {
-             _configuration = configuration;
+            _configuration = configuration;
             _minioClient = minioClient;
             bucketName = _configuration["S3:Bucket"]!;
         }
@@ -60,7 +58,7 @@ namespace SecretVault.Infrastructure.Services
         {
             await EnsureBucketExistsAsync();
 
-            var key= GetS3Key(accountId,month,year);
+            var key = GetS3Key(accountId, month, year);
             var bytes = Encoding.UTF8.GetBytes(content);
 
             using var stream = new MemoryStream(bytes);

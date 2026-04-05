@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SecretVault.Domain.Enums
+﻿namespace SecretVault.Domain.Enums
 {
     public enum UserRole
     {

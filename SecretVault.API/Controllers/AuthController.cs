@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SecretVault.Application.DTOs.Auth;
 using SecretVault.Application.Interfaces;
-using System.Security.Claims;
 
 namespace SecretVault.API.Controllers
 {
@@ -17,13 +14,13 @@ namespace SecretVault.API.Controllers
             _authService = authService;
         }
         [HttpPost("register")]
-        [ProducesResponseType(typeof(RegisterResponseDto),StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(RegisterResponseDto), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<IActionResult> Register([FromBody] RegisterRequestDto request)
         {
-            var result= await _authService.RegisterAsync(request);
-            return CreatedAtAction(nameof(Register), new {id=result.UserId},result);
+            var result = await _authService.RegisterAsync(request);
+            return CreatedAtAction(nameof(Register), new { id = result.UserId }, result);
         }
 
         [HttpPost("login")]
@@ -32,7 +29,7 @@ namespace SecretVault.API.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto request)
         {
-            var result=await _authService.LoginAsync(request);
+            var result = await _authService.LoginAsync(request);
             return Ok(result);
         }
 

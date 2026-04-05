@@ -1,12 +1,9 @@
 ﻿using FluentValidation;
 using SecretVault.Application.DTOs.Transaction;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SecretVault.Application.Validators
 {
-    public class WithdrawequestValidator:AbstractValidator<WithdrawRequestDto>
+    public class WithdrawequestValidator : AbstractValidator<WithdrawRequestDto>
     {
         public WithdrawequestValidator()
         {

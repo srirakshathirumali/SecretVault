@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using AuditLog= SecretVault.Domain.Entities.AuditLog;
+﻿using AuditLog = SecretVault.Domain.Entities.AuditLog;
 
 namespace SecretVault.Domain.Interfaces
 {

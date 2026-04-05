@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SecretVault.Application.Interfaces
+﻿namespace SecretVault.Application.Interfaces
 {
     public interface IPasswordService
     {

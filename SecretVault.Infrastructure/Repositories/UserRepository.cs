@@ -2,9 +2,6 @@
 using SecretVault.Domain.Entities;
 using SecretVault.Domain.Interfaces;
 using SecretVault.Infrastructure.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SecretVault.Infrastructure.Repositories
 {
@@ -14,11 +11,11 @@ namespace SecretVault.Infrastructure.Repositories
 
         public UserRepository(AppDbContext context)
         {
-            _context = context;    
+            _context = context;
         }
         public async Task AddAync(User user)
         {
-            user.Id= Guid.NewGuid();
+            user.Id = Guid.NewGuid();
             user.Email = user.Email.ToLower();
             user.CreatedOn = DateTime.UtcNow;
             await _context.Users.AddAsync(user);
@@ -32,12 +29,12 @@ namespace SecretVault.Infrastructure.Repositories
 
         public async Task<User?> GetUserByEmailAsync(string email)
         {
-            return await _context.Users.FirstOrDefaultAsync(u=>u.Email == email.ToLower());
+            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email.ToLower());
         }
 
         public async Task<User?> GetUserByIdAsync(Guid id)
         {
-            return await _context.Users.FirstOrDefaultAsync(u=>u.Id == id);
+            return await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
         }
 
         public async Task UpdateAync(User user)

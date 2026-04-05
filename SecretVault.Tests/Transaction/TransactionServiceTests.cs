@@ -4,9 +4,6 @@ using SecretVault.Application.Services;
 using SecretVault.Domain.Enums;
 using SecretVault.Domain.Exceptions;
 using SecretVault.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SecretVault.Tests.Transaction
 {

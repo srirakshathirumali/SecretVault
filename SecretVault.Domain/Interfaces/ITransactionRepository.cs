@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Transaction=SecretVault.Domain.Entities.Transaction;
+﻿using Transaction = SecretVault.Domain.Entities.Transaction;
 
 namespace SecretVault.Domain.Interfaces
 {

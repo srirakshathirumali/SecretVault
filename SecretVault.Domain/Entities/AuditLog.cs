@@ -1,9 +1,4 @@
-﻿using SecretVault.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SecretVault.Domain.Entities
+﻿namespace SecretVault.Domain.Entities
 {
     public class AuditLog
     {

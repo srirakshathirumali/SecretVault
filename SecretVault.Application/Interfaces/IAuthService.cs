@@ -1,7 +1,4 @@
 ﻿using SecretVault.Application.DTOs.Auth;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SecretVault.Application.Interfaces
 {

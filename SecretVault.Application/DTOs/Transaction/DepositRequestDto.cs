@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SecretVault.Application.DTOs.Transaction
+﻿namespace SecretVault.Application.DTOs.Transaction
 {
     public class DepositRequestDto
     {

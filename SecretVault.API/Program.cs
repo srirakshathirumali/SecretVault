@@ -1,6 +1,7 @@
 using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Scalar.AspNetCore;
 using SecretVault.API.Middleware;
 using SecretVault.Application;
 using SecretVault.Infrastructure;
@@ -22,7 +23,6 @@ try
     // Add services to the container.
 
     builder.Services.AddControllers();
-    // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
     builder.Services.AddOpenApi();
 
     builder.Services.AddInfrastructure(builder.Configuration);
@@ -56,6 +56,22 @@ try
             };
         });
 
+
+    // Services section
+    builder.Services.AddOpenApi(options =>
+    {
+        options.AddDocumentTransformer((document, context, ct) =>
+        {
+            document.Info = new()
+            {
+                Title = "SecureVault API",
+                Version = "v1",
+                Description = "Clean Architecture banking API — ASP.NET Core 8, JWT, EF Core, AWS S3"
+            };
+            return Task.CompletedTask;
+        });
+    });
+
     builder.Services.AddAuthorization();
 
     var app = builder.Build();
@@ -67,6 +83,11 @@ try
     if (app.Environment.IsDevelopment())
     {
         app.MapOpenApi();
+        app.MapScalarApiReference(options =>
+        {
+            options.Title = "SecureVault API";
+            options.Theme = ScalarTheme.DeepSpace;
+        });
     }
     app.UseIpRateLimiting();
     app.UseHttpsRedirection();

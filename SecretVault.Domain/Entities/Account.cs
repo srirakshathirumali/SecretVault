@@ -1,7 +1,4 @@
 ﻿using SecretVault.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SecretVault.Domain.Entities
 {
@@ -17,6 +14,6 @@ namespace SecretVault.Domain.Entities
 
         //Navigation
         public User User { get; set; } = null!;
-        public ICollection<Transaction> Transactions { get; set; }= new List<Transaction>();
+        public ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
     }
 }

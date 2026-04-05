@@ -2,8 +2,6 @@
 using Microsoft.IdentityModel.Tokens;
 using SecretVault.Application.Interfaces;
 using SecretVault.Domain.Entities;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -16,13 +14,13 @@ namespace SecretVault.Infrastructure.Services
         private readonly IConfiguration _configuration;
         public JwtService(IConfiguration configuration)
         {
-                _configuration = configuration;
+            _configuration = configuration;
         }
         public string GenerateAccessToken(User user)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:SecretKey"]!));
 
-            var credentials=new SigningCredentials(key,SecurityAlgorithms.HmacSha256);
+            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]
             {

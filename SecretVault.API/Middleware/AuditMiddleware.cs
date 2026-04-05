@@ -1,5 +1,4 @@
-﻿using Minio.DataModel.Notification;
-using SecretVault.Domain.Entities;
+﻿using SecretVault.Domain.Entities;
 using SecretVault.Domain.Interfaces;
 using System.Security.Claims;
 
@@ -8,7 +7,7 @@ namespace SecretVault.API.Middleware
     public class AuditMiddleware
     {
         private readonly RequestDelegate _next;
-        
+
         public AuditMiddleware(RequestDelegate next)
         {
             _next = next;
@@ -16,8 +15,8 @@ namespace SecretVault.API.Middleware
         public async Task InvokeAsync(HttpContext context, IAuditLogRepository auditLogRepository)
         {
             var method = context.Request.Method;
-            
-            if(method!=HttpMethods.Post && method!=HttpMethods.Put && method!=HttpMethods.Delete && method!=HttpMethods.Patch)
+
+            if (method != HttpMethods.Post && method != HttpMethods.Put && method != HttpMethods.Delete && method != HttpMethods.Patch)
             {
                 await _next(context);
                 return;

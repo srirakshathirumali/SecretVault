@@ -1,12 +1,9 @@
 ﻿using FluentValidation;
 using SecretVault.Application.DTOs.Auth;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SecretVault.Application.Validators
 {
-    public class LoginRequestValidator:AbstractValidator<LoginRequestDto>
+    public class LoginRequestValidator : AbstractValidator<LoginRequestDto>
     {
         public LoginRequestValidator()
         {
@@ -17,4 +14,4 @@ namespace SecretVault.Application.Validators
                 .NotEmpty().WithMessage("Password is required.");
         }
     }
- }
+}

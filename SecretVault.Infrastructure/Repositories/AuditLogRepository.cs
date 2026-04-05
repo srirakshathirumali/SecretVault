@@ -2,9 +2,6 @@
 using SecretVault.Domain.Entities;
 using SecretVault.Domain.Interfaces;
 using SecretVault.Infrastructure.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SecretVault.Infrastructure.Repositories
 {
@@ -14,7 +11,7 @@ namespace SecretVault.Infrastructure.Repositories
 
         public AuditLogRepository(AppDbContext context)
         {
-                _context = context;
+            _context = context;
         }
         public async Task AddAsync(AuditLog auditLog)
         {
@@ -27,7 +24,7 @@ namespace SecretVault.Infrastructure.Repositories
 
         public async Task<IEnumerable<AuditLog>> GetAllAync()
         {
-            return await _context.AuditLogs.OrderByDescending(a=>a.Timestamp).ToListAsync();
+            return await _context.AuditLogs.OrderByDescending(a => a.Timestamp).ToListAsync();
         }
     }
 }

@@ -3,10 +3,6 @@ using SecretVault.Application.Interfaces;
 using SecretVault.Domain.Entities;
 using SecretVault.Domain.Exceptions;
 using SecretVault.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace SecretVault.Application.Services
 {
@@ -45,12 +41,12 @@ namespace SecretVault.Application.Services
 
         public async Task<LoginResponseDto> LoginAsync(LoginRequestDto request)
         {
-           var user= await _userRepository.GetUserByEmailAsync(request.Email);
-           if(user == null || !_passwordService.Verify(request.Password, user.PasswordHash))
+            var user = await _userRepository.GetUserByEmailAsync(request.Email);
+            if (user == null || !_passwordService.Verify(request.Password, user.PasswordHash))
             {
                 throw new InvalidCredentialsException();
             }
-            
+
             var accessToken = _jwtService.GenerateAccessToken(user);
             user.RefreshToken = HashRefreshToken(_jwtService.GenerateRefreshToken());
             user.TokenExpiry = DateTime.UtcNow.AddDays(7);
@@ -62,8 +58,8 @@ namespace SecretVault.Application.Services
                 AccessToken = accessToken,
                 RefreshToken = user.RefreshToken,
                 AccessTokenExpiry = _jwtService.GetAccessTokenExpiry(),
-                Email=user.Email,
-                FullName=user.FullName
+                Email = user.Email,
+                FullName = user.FullName
             };
         }
 

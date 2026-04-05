@@ -1,8 +1,4 @@
 ﻿using SecretVault.Application.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using BCrypt.Net;
 
 namespace SecretVault.Infrastructure.Services
 {

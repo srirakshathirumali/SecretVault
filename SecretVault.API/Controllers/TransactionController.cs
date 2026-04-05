@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SecretVault.Application.DTOs.Transaction;
 using SecretVault.Application.Interfaces;
@@ -26,8 +25,8 @@ namespace SecretVault.API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Deposit([FromBody] DepositRequestDto request)
         {
-           var response= await _transactionService.DepositAsync(request,GetUserId());
-           return Ok(response);
+            var response = await _transactionService.DepositAsync(request, GetUserId());
+            return Ok(response);
         }
 
         [HttpPost("withdraw")]

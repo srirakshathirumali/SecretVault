@@ -2,16 +2,13 @@
 using SecretVault.Domain.Entities;
 using SecretVault.Domain.Interfaces;
 using SecretVault.Infrastructure.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SecretVault.Infrastructure.Repositories
 {
     public class AccountRepository : IAccountRepository
     {
         private readonly AppDbContext _context;
-        public AccountRepository(AppDbContext context) 
+        public AccountRepository(AppDbContext context)
         {
             _context = context;
         }
@@ -40,8 +37,8 @@ namespace SecretVault.Infrastructure.Repositories
 
         public async Task UpdateAsync(Account account)
         {
-            var existingAccount =await _context.Accounts.FindAsync(account.Id);
-            if(existingAccount == null) return;
+            var existingAccount = await _context.Accounts.FindAsync(account.Id);
+            if (existingAccount == null) return;
 
             existingAccount.Balance = account.Balance;
             existingAccount.IsActive = account.IsActive;

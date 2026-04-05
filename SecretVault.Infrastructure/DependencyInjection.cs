@@ -7,9 +7,6 @@ using SecretVault.Domain.Interfaces;
 using SecretVault.Infrastructure.Persistence;
 using SecretVault.Infrastructure.Repositories;
 using SecretVault.Infrastructure.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SecretVault.Infrastructure
 {
@@ -20,7 +17,7 @@ namespace SecretVault.Infrastructure
             // Register DbContext
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
-                b=>b.MigrationsAssembly("SecureVault.Infrastructure")));
+                b => b.MigrationsAssembly("SecureVault.Infrastructure")));
 
             // Register repositories
             services.AddScoped<IUserRepository, UserRepository>();

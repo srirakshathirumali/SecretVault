@@ -4,9 +4,6 @@ using SecretVault.Domain.Entities;
 using SecretVault.Domain.Enums;
 using SecretVault.Domain.Exceptions;
 using SecretVault.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SecretVault.Application.Services
 {

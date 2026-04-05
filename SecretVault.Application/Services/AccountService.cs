@@ -1,15 +1,8 @@
-﻿using Microsoft.Extensions.Configuration.EnvironmentVariables;
-using SecretVault.Application.DTOs.Account;
+﻿using SecretVault.Application.DTOs.Account;
 using SecretVault.Application.Interfaces;
 using SecretVault.Domain.Entities;
-using SecretVault.Domain.Enums;
 using SecretVault.Domain.Exceptions;
 using SecretVault.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Security.Principal;
-using System.Text;
-using System.Transactions;
 
 namespace SecretVault.Application.Services
 {
@@ -43,7 +36,7 @@ namespace SecretVault.Application.Services
         public async Task<AccountResponseDto> GetAccountByAccountId(Guid accountId, Guid userId)
         {
             var account = await _accountRepository.GetByIdAsync(accountId);
-            
+
             if (account == null)
                 throw new AccountNotFoundException(accountId);
 
@@ -55,7 +48,7 @@ namespace SecretVault.Application.Services
 
         public async Task<IEnumerable<AccountResponseDto>> GetUserAccountsAsync(Guid userId)
         {
-            var accounts =await _accountRepository.GetByUserIdAsync(userId);
+            var accounts = await _accountRepository.GetByUserIdAsync(userId);
             List<AccountResponseDto> response = new List<AccountResponseDto>();
             foreach (var account in accounts)
             {
@@ -63,10 +56,10 @@ namespace SecretVault.Application.Services
             }
             return response;
         }
-         public async Task<string> GetStatementUrlAsync(Guid accountId, Guid userId)
+        public async Task<string> GetStatementUrlAsync(Guid accountId, Guid userId)
         {
             var account = await _accountRepository.GetByIdAsync(accountId);
-            if(account == null)
+            if (account == null)
                 throw new AccountNotFoundException(accountId);
 
             if (account.UserId != userId)
@@ -80,12 +73,12 @@ namespace SecretVault.Application.Services
             if (!statementExists)
             {
                 var content = await GenerateStatementContentAsync(account, month, year);
-                await _s3Service.UploadStatementAsync(accountId,content, month, year);
+                await _s3Service.UploadStatementAsync(accountId, content, month, year);
             }
             return await _s3Service.GetPreSignedUrlAsync(accountId, month, year);
 
         }
-        private async Task<string> GenerateStatementContentAsync(Account account,int month, int year)
+        private async Task<string> GenerateStatementContentAsync(Account account, int month, int year)
         {
             var transactions = await _transactionRepository
             .GetByAccountIdAsync(account.Id);

@@ -4,9 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using SecretVault.Application.Interfaces;
 using SecretVault.Application.Services;
 using SecretVault.Application.Validators;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SecretVault.Application
 {

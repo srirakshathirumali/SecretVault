@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SecretVault.Application.DTOs.Account;
 using SecretVault.Application.Interfaces;
@@ -15,7 +14,7 @@ namespace SecretVault.API.Controllers
         private readonly IAccountService _accountService;
         public AccountController(IAccountService accountService)
         {
-             _accountService = accountService;
+            _accountService = accountService;
         }
 
         [HttpPost]
@@ -24,8 +23,8 @@ namespace SecretVault.API.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> CreateAccount([FromBody] CreateAccountRequestDto request)
         {
-            var userId= GetUserId();
-            var account = await _accountService.CreateAccountAsync(request,userId);
+            var userId = GetUserId();
+            var account = await _accountService.CreateAccountAsync(request, userId);
             return CreatedAtAction(nameof(CreateAccount), new { id = account.Id }, account);
         }
 
@@ -35,7 +34,7 @@ namespace SecretVault.API.Controllers
         public async Task<IActionResult> GetAccounts()
         {
             var userId = GetUserId();
-            var result= await _accountService.GetUserAccountsAsync(userId);
+            var result = await _accountService.GetUserAccountsAsync(userId);
             return Ok(result);
         }
 
