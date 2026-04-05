@@ -5,7 +5,7 @@ using Minio;
 using SecretVault.Application.Interfaces;
 using SecretVault.Domain.Interfaces;
 using SecretVault.Infrastructure.Persistence;
-using SecretVault.Infrastructure.Repositories;
+using SecretVault.Infrastructure.Persistence.Repositories;
 using SecretVault.Infrastructure.Services;
 
 namespace SecretVault.Infrastructure

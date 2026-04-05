@@ -3,7 +3,7 @@ using SecretVault.Domain.Entities;
 using SecretVault.Domain.Interfaces;
 using SecretVault.Infrastructure.Persistence;
 
-namespace SecretVault.Infrastructure.Repositories
+namespace SecretVault.Infrastructure.Persistence.Repositories
 {
     public class TransactionRepository : ITransactionRepository
     {
