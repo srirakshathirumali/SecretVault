@@ -68,7 +68,7 @@ no knowledge of how or where data is stored.
 | Technology | Version | Purpose |
 |---|---|---|
 | ASP.NET Core | 10.0 | Web API framework |
-| C# | 13 | Primary language |
+| C# | 14 | Primary language |
 | Entity Framework Core | 10.0 | ORM + Code First migrations |
 | SQL Server LocalDB | 2022 | Primary database |
 | JWT Bearer | — | Authentication |
